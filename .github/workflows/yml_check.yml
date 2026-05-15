@@ -1,0 +1,15 @@
+name: CI with self-check
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  yaml-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install yamllint
+        run: sudo apt-get update && sudo apt-get install -y yamllint
+      - name: Lint all YAML
+        run: yamllint . --strict
